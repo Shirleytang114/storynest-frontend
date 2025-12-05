@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnSubmit.innerText = "傳送中..."; // 可依喜好修改文字
 
         // 2. 發送資料到後端
-      const apiUrl = `${CONFIG.API_BASE_URL}/api/responses`; 
+      const apiUrl = `${CONFIG.API_BASE_URL}`; 
       
       fetch(apiUrl, { 
         method: 'POST',
