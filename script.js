@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnSubmit.innerText = "傳送中..."; // 可依喜好修改文字
 
         // 2. 發送資料到後端
-        fetch('http://localhost:3000/api/responses', {
+        fetch('https://storynest115.zeabur.app/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
