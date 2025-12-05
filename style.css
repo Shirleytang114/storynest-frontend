@@ -1,0 +1,229 @@
+/* --- 基礎設定 --- */
+:root {
+    --bg-color: #f5f5f5;       /* 背景淺灰 */
+    --input-bg: #e6e4e4;       /* 輸入框深灰 */
+    --btn-color: #dcdcdc;      /* 按鈕灰 */
+    --text-color: #333333;
+    --placeholder-color: #555;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "PingFang TC", "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    /* 防止水平捲動的關鍵 */
+    overflow-x: hidden; 
+    width: 100%;
+}
+
+/* --- 主容器 --- */
+.main-container {
+    width: 100%;
+    max-width: 480px; /* 手機優先，但在桌機上限制最大寬度以保持美觀 */
+    padding: 20px 20px 0 20px; /* 底部 padding留給圖片 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* --- 通用樣式 --- */
+.page-title {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.content-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1; /* 讓內容區塊撐開高度 */
+}
+
+/* 隱藏樣式 */
+.hidden {
+    display: none !important;
+}
+
+/* --- 表單元件 --- */
+.form-group {
+    width: 100%;
+    position: relative;
+}
+
+input[type="text"], 
+textarea, 
+.read-only-box {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 1rem;
+    color: var(--text-color);
+    outline: none;
+    display: block;
+}
+
+textarea, .story-box {
+    height: 250px; /* 固定高度，符合設計圖 */
+    resize: none;  /* 禁止使用者拉大縮小 */
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--placeholder-color);
+}
+
+/* 錯誤訊息 */
+.error-msg {
+    color: #d93025;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    margin-left: 10px;
+    display: none; /* 預設隱藏 */
+}
+.form-group.error input, 
+.form-group.error textarea {
+    border: 1px solid #d93025;
+}
+.form-group.error .error-msg {
+    display: block;
+}
+
+/* 字數統計 */
+.char-count {
+    text-align: right;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+/* --- 按鈕區域 --- */
+.action-area {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-primary, .btn-secondary {
+    background-color: var(--btn-color);
+    border: none;
+    border-radius: 15px;
+    padding: 15px 0;
+    width: 150px; /* 固定寬度或可設為 100% */
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    color: var(--text-color);
+    transition: background 0.2s;
+}
+
+.btn-primary:active, .btn-secondary.clickable:active {
+    background-color: #c0c0c0;
+}
+
+/* Post Sent 頁面的按鈕排列 */
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.btn-secondary {
+    flex: 1; /* 兩個按鈕均分寬度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 讓「感謝分享」按鈕看起來不可點擊 */
+.btn-secondary.static {
+    cursor: default;
+}
+
+/* --- 底部版權與圖片 --- */
+.copyright {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 20px;
+    margin-bottom: 20px; /* 留出空間給底部圖片 */
+}
+
+.footer-image-container {
+    width: 100%;
+    margin-top: auto; /* 將圖片推到容器最底部 */
+    line-height: 0;   /* 消除圖片下方空隙 */
+}
+
+.footer-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* 這裡可以依據你的圖檔做調整，例如 border-radius */
+}
+
+/* --- 成功彈窗 (Popup) --- */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6); /* 半透明背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.popup-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.popup-content h2 {
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+.check-icon svg {
+    width: 60px;
+    height: 60px;
+}
+
+/* --- 響應式微調 (RWD) --- */
+/* Mobile First 已由上述樣式涵蓋，以下針對大螢幕優化 */
+@media (min-width: 768px) {
+    .main-container {
+        /* 在平板以上增加一些頂部空間 */
+        padding-top: 50px; 
+    }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8號茶水間 - 回應收集小幫手</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">8號茶水間 (The Pantry 8)</h1>
+
+        <section id="landing-section" class="content-section active">
+            <div class="form-group">
+                <input type="text" id="input-nickname" placeholder="你的暱稱..." maxlength="20">
+                <div class="error-msg" id="error-nickname">請填寫暱稱</div>
+            </div>
+
+            <div class="form-group">
+                <textarea id="input-story" placeholder="你想分享的故事..." maxlength="500"></textarea>
+                <div class="char-count"><span id="current-count">0</span>/500</div>
+                <div class="error-msg" id="error-story">請填寫故事內容</div>
+            </div>
+
+            <div class="action-area">
+                <button id="btn-submit" class="btn-primary">送出回應</button>
+            </div>
+            
+            <div class="copyright">Copyright © 8年級實習生</div>
+        </section>
+
+        <section id="sent-section" class="content-section hidden">
+            <div class="read-only-box nickname-box">
+                <span id="display-nickname"></span>
+            </div>
+
+            <div class="read-only-box story-box">
+                你的故事已送出！
+            </div>
+
+            <div class="action-area button-row">
+                <button class="btn-secondary static">感謝分享！</button>
+                <button id="btn-restart" class="btn-secondary clickable">再寫一個<br>故事</button>
+            </div>
+
+            <div class="copyright">Copyright © 8年級實習生</div>
+        </section>
+
+        <div class="footer-image-container">
+            <img src="podcastbanner.jpg" alt="8號茶水間 Logo" class="footer-img">
+        </div>
+
+    </div>
+
+    <div id="success-popup" class="popup-overlay hidden">
+        <div class="popup-content">
+            <h2>成功送出</h2>
+            <div class="check-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 13L9 17L19 7" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="1" y="1" width="22" height="22" rx="5" stroke="black" stroke-width="2"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
