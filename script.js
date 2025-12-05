@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 1. 送出回應邏輯 (修改重點：加入 API 串接)
+    // 1. 送出回應邏輯
     btnSubmit.addEventListener('click', () => {
         const nickname = inputNickname.value.trim();
         const story = inputStory.value.trim();
@@ -61,16 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 1. 鎖定按鈕，避免重複點擊
         btnSubmit.disabled = true;
-        btnSubmit.innerText = "傳送中..."; // 可依喜好修改文字
+        btnSubmit.innerText = "傳送中..."; 
 
-        // 2. 發送資料到後端
-      const apiUrl = `${CONFIG.API_BASE_URL}`; 
+        // 2. 發送資料到後端 (修改處：填入正確的 Zeabur API 網址)
+        // 注意：這裡必須包含 /api/responses
+        const apiUrl = 'https://storynest115.zeabur.app/api/responses'; 
       
-      fetch(apiUrl, { 
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-    },
+        fetch(apiUrl, { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 nickname: nickname,
                 story: story
@@ -84,12 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             } else {
                 // 失敗：拋出錯誤讓 catch 捕捉
-                throw new Error('伺服器回應錯誤');
+                // 這裡可以把後端回傳的錯誤訊息印出來幫助除錯
+                return response.json().then(err => {
+                    throw new Error(err.message || '伺服器回應錯誤');
+                });
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert("傳送失敗，請確認網路連線或是後端伺服器是否已啟動。");
+            // 友善的錯誤提示
+            alert("傳送失敗！請確認你的後端程式碼是否已包含 /api/responses 路由，或檢查網路連線。");
         })
         .finally(() => {
             // 4. 無論成功或失敗，都恢復按鈕狀態
