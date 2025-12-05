@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. 發送資料到後端 (修改處：填入正確的 Zeabur API 網址)
         // 注意：這裡必須包含 /api/responses
-        const apiUrl = 'https://storynest115.zeabur.app/api/responses'; 
+        const apiUrl = 'https://storynest115.zeabur.app'; 
       
         fetch(apiUrl, { 
             method: 'POST',
